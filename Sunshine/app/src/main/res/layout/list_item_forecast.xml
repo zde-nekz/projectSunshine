@@ -7,6 +7,8 @@
     android:minHeight="?android:attr/listPreferredItemHeight"
     android:orientation="vertical"
     android:gravity="center_vertical"
-    tools:text="Today - Sunny - 20/23">
+    tools:text="Today - Sunny - 20/23"
+    android:padding="8dp"
+    >
 
 </TextView>

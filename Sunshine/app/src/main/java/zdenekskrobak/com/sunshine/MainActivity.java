@@ -1,5 +1,6 @@
 package zdenekskrobak.com.sunshine;
 
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;

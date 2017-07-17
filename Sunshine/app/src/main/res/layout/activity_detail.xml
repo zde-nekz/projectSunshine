@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="zdenekskrobak.com.sunshine.MainActivity">
+    tools:context="zdenekskrobak.com.sunshine.MainActivity"
+    android:layout_margin="16dp"
+    >
 
    <FrameLayout
        android:id="@+id/container"
