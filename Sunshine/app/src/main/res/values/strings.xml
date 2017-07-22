@@ -7,4 +7,7 @@
     <string name="settings_city_default">Praha</string>
     <string name="settings_unit_default">metric</string>
     <string name="share">Share</string>
+
+    <string name="units_metric">metric</string>
+    <string name="units_imperial">imperial</string>
 </resources>

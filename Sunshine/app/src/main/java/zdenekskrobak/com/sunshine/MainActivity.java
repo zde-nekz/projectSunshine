@@ -25,6 +25,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        PreferenceManager.setDefaultValues(this,
+                R.xml.settings, false);
+
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container, new ForecastFragment()).commit();
     }
