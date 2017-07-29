@@ -29,8 +29,15 @@
 
         <provider
             android:name=".data.WeatherProvider"
-            android:authorities="zdenekskrobak.com.sunshine" />
+            android:authorities="zdenekskrobak.com.sunshine"
+            android:enabled="true"
+            android:exported="true"
+            />
 
     </application>
+
+    <permission android:name="zdenekskrobak.com.sunshine.PERMISSION_WEATHER"
+        android:protectionLevel="dangerous"
+        android:label="Weather Permission"/>
 
 </manifest>

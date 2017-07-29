@@ -1,5 +1,6 @@
 package zdenekskrobak.com.sunshine;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
@@ -24,7 +25,13 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
+        Intent intent = getIntent();
+        String forecastStr = null;
+        if (intent != null) {
+            forecastStr = intent.getDataString();
+        }
+
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container, DetailFragment.newInstance(getIntent().getStringExtra(EXTRA_FORECAST))).commit();
+                .replace(R.id.container, DetailFragment.newInstance(forecastStr)).commit();
     }
 }

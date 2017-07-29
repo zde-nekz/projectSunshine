@@ -22,8 +22,8 @@ public class SettingsFragment extends PreferenceFragment implements Preference.O
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.settings);
 
-        mLocation = findPreference("location");
-        Preference unit = findPreference("unit");
+        mLocation = findPreference(getString(R.string.settings_location));
+        Preference unit = findPreference(getString(R.string.settings_unit));
 
         bindPreferenceSummaryToValue(mLocation);
         mLocation.setOnPreferenceChangeListener(this);

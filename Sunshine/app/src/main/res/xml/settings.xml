@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <EditTextPreference
-        android:key="location"
+        android:key="@string/settings_location"
         android:defaultValue="@string/settings_city_default"
         android:title="@string/settings_location"/>
 
     <ListPreference
-        android:key="unit"
+        android:key="@string/settings_unit"
         android:title="@string/settings_unit"
         android:entryValues="@array/units_values"
         android:entries="@array/units_titles"
