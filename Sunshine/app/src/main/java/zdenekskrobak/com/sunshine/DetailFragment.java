@@ -17,6 +17,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import butterknife.BindView;
@@ -41,6 +42,10 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
             WeatherContract.WeatherEntry.COLUMN_SHORT_DESC,
             WeatherContract.WeatherEntry.COLUMN_MAX_TEMP,
             WeatherContract.WeatherEntry.COLUMN_MIN_TEMP,
+            WeatherContract.WeatherEntry.COLUMN_HUMIDITY,
+            WeatherContract.WeatherEntry.COLUMN_WIND_SPEED,
+            WeatherContract.WeatherEntry.COLUMN_DEGREES,
+            WeatherContract.WeatherEntry.COLUMN_PRESSURE
     };
 
     // these constants correspond to the projection defined above, and must change if the
@@ -50,12 +55,30 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
     private static final int COL_WEATHER_DESC = 2;
     private static final int COL_WEATHER_MAX_TEMP = 3;
     private static final int COL_WEATHER_MIN_TEMP = 4;
+    private static final int COL_WEATHER_HUMIDITY = 5;
+    private static final int COL_WEATHER_WIND_SPEED = 6;
+    private static final int COL_WEATHER_DEGREES = 7;
+    private static final int COL_WEATHER_PRESSURE = 8;
 
     private String mForecast;
-
-    @BindView(R.id.text)
-    TextView mTextView;
     private ShareActionProvider mShareActionProvider;
+
+    @BindView(R.id.date_textview)
+    TextView mDateTv;
+    @BindView(R.id.high_textview)
+    TextView mHighTv;
+    @BindView(R.id.low_textview)
+    TextView mLowTv;
+    @BindView(R.id.humidity_textview)
+    TextView mHumidityTv;
+    @BindView(R.id.wind_textview)
+    TextView mWindTv;
+    @BindView(R.id.pressure_textview)
+    TextView mPressureTv;
+    @BindView(R.id.icon)
+    ImageView mIconIv;
+    @BindView(R.id.forecast_textview)
+    TextView mForecastTv;
 
     public static DetailFragment newInstance(String forecast) {
         DetailFragment fragment = new DetailFragment();
@@ -132,22 +155,25 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
             return;
         }
 
-        String dateString = Utility.formatDate(
-                data.getLong(COL_WEATHER_DATE));
-
-        String weatherDescription =
-                data.getString(COL_WEATHER_DESC);
+        String dateString = Utility.formatDate(data.getLong(COL_WEATHER_DATE));
+        String weatherDescription = data.getString(COL_WEATHER_DESC);
 
         boolean isMetric = Utility.isMetric(getActivity());
 
         String high = Utility.formatTemperature(getActivity(), data.getDouble(COL_WEATHER_MAX_TEMP), isMetric);
-
         String low = Utility.formatTemperature(getActivity(), data.getDouble(COL_WEATHER_MIN_TEMP), isMetric);
 
-        mForecast = String.format("%s - %s - %s/%s", dateString, weatherDescription, high, low);
+        String humidity = getString(R.string.format_humidity, data.getDouble(COL_WEATHER_HUMIDITY));
+        String wind = Utility.getFormattedWind(getActivity(), data.getFloat(COL_WEATHER_WIND_SPEED), data.getFloat(COL_WEATHER_DEGREES));
+        String pressure = getString(R.string.format_pressure, data.getDouble(COL_WEATHER_PRESSURE));
 
-        TextView detailTextView = (TextView) getView().findViewById(R.id.text);
-        detailTextView.setText(mForecast);
+        mDateTv.setText(dateString);
+        mForecastTv.setText(weatherDescription);
+        mHighTv.setText(high);
+        mLowTv.setText(low);
+        mHumidityTv.setText(humidity);
+        mWindTv.setText(wind);
+        mPressureTv.setText(pressure);
 
         // If onCreateOptionsMenu has already happened, we need to update the share intent now.
         if (mShareActionProvider != null) {

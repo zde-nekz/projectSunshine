@@ -1,13 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/text"
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/date_textview"
+            style="@style/TextAppearance.AppCompat.Display1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/default_margin"
+            android:text="Today"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+        <TextView
+            android:id="@+id/high_textview"
+            style="@style/Base.TextAppearance.AppCompat.Display2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32dp"
+            android:text="21°"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/date_textview" />
+
+        <TextView
+            android:id="@+id/low_textview"
+            style="@style/Base.TextAppearance.AppCompat.Display1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="8°"
+            app:layout_constraintLeft_toLeftOf="@+id/high_textview"
+            app:layout_constraintTop_toBottomOf="@+id/high_textview" />
+
+        <TextView
+            android:id="@+id/humidity_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Humidity: 84%"
+            app:layout_constraintLeft_toLeftOf="@id/low_textview"
+            app:layout_constraintTop_toBottomOf="@+id/low_textview"
+            />
+
+        <TextView
+            android:id="@+id/wind_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Wind: 6 km/h NW"
+            app:layout_constraintLeft_toLeftOf="@+id/humidity_textview"
+            app:layout_constraintTop_toBottomOf="@id/humidity_textview"
+            />
+
+        <TextView
+            android:id="@+id/pressure_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pressure: 1014 hPa"
+            app:layout_constraintLeft_toLeftOf="@+id/wind_textview"
+            app:layout_constraintTop_toBottomOf="@+id/wind_textview"
+            />
 
 
-</LinearLayout>
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/default_margin"
+            android:src="@mipmap/ic_launcher"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <TextView
+            android:id="@+id/forecast_textview"
+            style="@style/Base.TextAppearance.AppCompat.Display1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/default_margin"
+            android:text="Clear"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/icon" />
+
+    </android.support.constraint.ConstraintLayout>
+
+
+</ScrollView>
