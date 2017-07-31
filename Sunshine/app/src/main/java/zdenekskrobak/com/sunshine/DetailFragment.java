@@ -37,7 +37,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
     private static final int DETAIL_LOADER = 0;
 
     private static final String[] FORECAST_COLUMNS = {
-            WeatherContract.WeatherEntry.TABLE_NAME + "." + WeatherContract.WeatherEntry._ID,
+            WeatherContract.WeatherEntry.COLUMN_WEATHER_ID,
             WeatherContract.WeatherEntry.COLUMN_DATE,
             WeatherContract.WeatherEntry.COLUMN_SHORT_DESC,
             WeatherContract.WeatherEntry.COLUMN_MAX_TEMP,
@@ -45,7 +45,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
             WeatherContract.WeatherEntry.COLUMN_HUMIDITY,
             WeatherContract.WeatherEntry.COLUMN_WIND_SPEED,
             WeatherContract.WeatherEntry.COLUMN_DEGREES,
-            WeatherContract.WeatherEntry.COLUMN_PRESSURE
+            WeatherContract.WeatherEntry.COLUMN_PRESSURE,
     };
 
     // these constants correspond to the projection defined above, and must change if the
@@ -166,6 +166,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
         String humidity = getString(R.string.format_humidity, data.getDouble(COL_WEATHER_HUMIDITY));
         String wind = Utility.getFormattedWind(getActivity(), data.getFloat(COL_WEATHER_WIND_SPEED), data.getFloat(COL_WEATHER_DEGREES));
         String pressure = getString(R.string.format_pressure, data.getDouble(COL_WEATHER_PRESSURE));
+        int weatherIcon = Utility.getArtResourceForWeatherCondition(data.getInt(COL_WEATHER_ID));
 
         mDateTv.setText(dateString);
         mForecastTv.setText(weatherDescription);
@@ -174,6 +175,7 @@ public class DetailFragment extends Fragment implements LoaderManager.LoaderCall
         mHumidityTv.setText(humidity);
         mWindTv.setText(wind);
         mPressureTv.setText(pressure);
+        mIconIv.setImageResource(weatherIcon);
 
         // If onCreateOptionsMenu has already happened, we need to update the share intent now.
         if (mShareActionProvider != null) {
